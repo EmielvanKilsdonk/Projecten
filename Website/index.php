@@ -9,14 +9,6 @@
 </head>
 
 <body>
-  <?php
-    session_start();
-    if (isset($_SESSION['login']) && $_SESSION['login'] === true)
-    {
-      echo $_SESSION['login'];
-      echo '<p><a class="btn btn-primary btn-lg" href="uitloggen.php" role="button">Uitloggen »</a></p>';
-    }
-  ?>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" height="30" class="d-inline-block align-top" alt="">
@@ -29,19 +21,33 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Inzien project</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Indienen</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
-        Website voor het Summa College
-      </span>
+        <?php
+          session_start();
+          $userid = $_SESSION['user'];
+          $connection = mysqli_connect("localhost", "root", "", "summaprojecten");
+          $query = "SELECT * FROM lid where `lidid` = '$userid';";
+          $resultaat = mysqli_query($connection, $query);
+          if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
+            echo '<li class="nav-item"><a class="nav-link" href="#">Inzien project</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="#">Indienen</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="uitloggen.php">Uitloggen</a></li>';
+            echo '</ul>';
+            if (mysqli_num_rows($resultaat) > 0)
+            {
+              while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC))
+              {
+                echo '<span class="navbar-text">Welkom, ' . $row['lidnaam']  . '!</span>';
+              }
+            }
+          }
+          else {
+            echo '<li class="nav-item"><a class="nav-link disabled" href="#">Inzien project</a></li>';
+            echo '<li class="nav-item"><a class="nav-link disabled" href="#">Indienen</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
+            echo '</ul>';
+            echo '<span class="navbar-text">Website voor het Summa College</span>';
+          }
+        ?>
     </div>
   </nav>
 
@@ -51,7 +57,14 @@
       <div class="container">
         <h1 class="display-3">Projecten opleveren</h1>
         <p>Op deze site is het mogelijk om je projecten voor het Summa College op te leveren. Deze kunnen dan door u of de opdrachtgever bekeken worden en beoordeerd.</p>
-        <p><a class="btn btn-primary btn-lg" href="login.php" role="button">Login »</a></p>
+        <?php
+          if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
+            echo '<p><a class="btn btn-primary btn-lg" href="Projecten/index.php" role="button">Zie Projecten »</a></p>';
+          }
+          else {
+            echo '<p><a class="btn btn-primary btn-lg" href="login.php" role="button">Login »</a></p>';
+          }
+        ?>
       </div>
     </div>
   </main>

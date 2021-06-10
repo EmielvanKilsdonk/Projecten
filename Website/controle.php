@@ -13,10 +13,11 @@
 
       if (mysqli_num_rows($resultaat) > 0)
       {
-        while($row = mysqli_fetch_array($resultaat, MYSQLI_NUM))
+        while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC))
         {
           session_start();
           $_SESSION['login'] = true;
+          $_SESSION['user'] = $row['lidid'];
 
           header("location: index.php");
           exit;
@@ -27,7 +28,6 @@
         exit;
       }
     }
-    //REGISTREREN
     else if(isset($_GET['method']) && $_GET['method'] == 'login')
     {
       
