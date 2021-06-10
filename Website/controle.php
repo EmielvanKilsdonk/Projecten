@@ -1,11 +1,14 @@
 <?php
     $connection = mysqli_connect("localhost","root","", "summaprojecten");
 
+    $wachtwoord = $_POST['inputPassword'];
+    $username = $_POST['inputUsername'];
+    $name = $_POST['inputName'];
+    $docent = $_POST['inputDocent'];
+
     //INLOGGEN
     if(isset($_GET['method']) && $_GET['method'] == 'login')
     {
-      $wachtwoord = $_POST['inputPassword'];
-      $username = $_POST['inputUsername'];
 
       $query = "SELECT * FROM lid WHERE gebruikersnaam = '$username' AND wachtwoord = '$wachtwoord'";
       $resultaat = mysqli_query($connection, $query);
@@ -28,12 +31,8 @@
         exit;
       }
     }
-<<<<<<< Updated upstream
-    else if(isset($_GET['method']) && $_GET['method'] == 'login')
-=======
     //REGISTREREN
     else if(isset($_GET['method']) && $_GET['method'] == 'registreren')
->>>>>>> Stashed changes
     {
       
     }
