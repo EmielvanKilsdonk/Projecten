@@ -14,7 +14,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Registreren</h1>
 
         <label for="inputUsername" class="sr-only">Email</label>
-        <input type="email" id="inputUsername" name="inputUsername" class="form-control" placeholder="Emailadres" required />
+        <input type="email" id="inputUsername" name="inputUsername" class="form-control" placeholder="Gebruikersnaam" required />
 
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Wachtwoord" required />

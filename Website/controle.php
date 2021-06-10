@@ -1,5 +1,5 @@
 <?php
-    $connection = mysqli_connect("localhost","root","", "test01");
+    $connection = mysqli_connect("localhost","root","", "summaprojecten");
 
     //INLOGGEN
     if(isset($_GET['method']) && $_GET['method'] == 'login')
@@ -7,7 +7,7 @@
       $wachtwoord = $_POST['inputPassword'];
       $username = $_POST['inputUsername'];
 
-      $query = "SELECT * FROM persoonsgegevens WHERE gebruikersnaam = '$username' AND wachtwoord = '$wachtwoord'";
+      $query = "SELECT * FROM lid WHERE gebruikersnaam = '$username' AND wachtwoord = '$wachtwoord'";
       $resultaat = mysqli_query($connection, $query);
 
 
