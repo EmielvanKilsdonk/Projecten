@@ -13,16 +13,26 @@
         <img class="mb-4" src="img/logo.png" alt="SUMMA COLLEGE" height="72" />
         <h1 class="h3 mb-3 font-weight-normal">Registreren</h1>
 
+        <label for="inputName" class="sr-only">Naam</label>
+        <input type="text" id="inputName" name="inputName" class="form-control" placeholder="Naam" required />
+
         <label for="inputUsername" class="sr-only">Email</label>
-        <input type="email" id="inputUsername" name="inputUsername" class="form-control" placeholder="Gebruikersnaam" required />
+        <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Gebruikersnaam" required />
 
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Wachtwoord" required />
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="inputDocent" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Ik ben een docent
+            </label>
+        </div>
         
         <p><a href="login.php">Al een account? Log hier in</a></p>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Log in
+            Registeer
         </button>
     </form>
 </body>

@@ -28,7 +28,12 @@
         exit;
       }
     }
+<<<<<<< Updated upstream
     else if(isset($_GET['method']) && $_GET['method'] == 'login')
+=======
+    //REGISTREREN
+    else if(isset($_GET['method']) && $_GET['method'] == 'registreren')
+>>>>>>> Stashed changes
     {
       
     }
