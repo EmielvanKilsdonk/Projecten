@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 10, 2021 at 09:00 AM
+-- Generation Time: Jun 10, 2021 at 09:26 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -26,6 +26,31 @@ USE `summaprojecten`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bestand`
+--
+
+DROP TABLE IF EXISTS `bestand`;
+CREATE TABLE IF NOT EXISTS `bestand` (
+  `bestandid` int(11) NOT NULL AUTO_INCREMENT,
+  `bestandurl` varchar(50) NOT NULL,
+  PRIMARY KEY (`bestandid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bestandproject`
+--
+
+DROP TABLE IF EXISTS `bestandproject`;
+CREATE TABLE IF NOT EXISTS `bestandproject` (
+  `projectid` int(11) NOT NULL,
+  `bestandid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lid`
 --
 
@@ -34,24 +59,10 @@ CREATE TABLE IF NOT EXISTS `lid` (
   `lidid` int(11) NOT NULL AUTO_INCREMENT,
   `lidnaam` varchar(25) NOT NULL,
   `liddocent` tinyint(1) NOT NULL,
-  PRIMARY KEY (`lidid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login`
---
-
-DROP TABLE IF EXISTS `login`;
-CREATE TABLE IF NOT EXISTS `login` (
-  `loginid` int(11) NOT NULL AUTO_INCREMENT,
-  `lidid` int(11) NOT NULL,
   `gebruikersnaam` varchar(25) NOT NULL,
   `wachtwoord` varchar(25) NOT NULL,
-  PRIMARY KEY (`loginid`),
-  UNIQUE KEY `gebruikersnaam` (`gebruikersnaam`),
-  UNIQUE KEY `lidid` (`lidid`)
+  PRIMARY KEY (`lidid`),
+  UNIQUE KEY `gebruikersnaam` (`gebruikersnaam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -79,16 +90,6 @@ CREATE TABLE IF NOT EXISTS `projectlid` (
   `projectid` int(11) NOT NULL,
   `lidid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `login`
---
-ALTER TABLE `login`
-  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`lidid`) REFERENCES `lid` (`lidid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
