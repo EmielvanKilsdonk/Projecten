@@ -108,7 +108,7 @@
       }
     }  
     else {
-      echo 'Kon bestanden niet laden. Probeer opnieuw.';
+      echo 'Geen bestanden gevonden.';
     }
     ?>   
     

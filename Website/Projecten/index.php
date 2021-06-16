@@ -38,6 +38,9 @@
             {
               while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC))
               {
+                if ($_SESSION['docent'] == 1) {
+                  echo '<a href="../Projecten/maakproject.php"><button type="button" class="btn btn-primary" style="margin-right:10px;">Maak Project</button></a>';
+                }
                 echo '<span class="navbar-text">Welkom, ' . $row['lidnaam']  . '!</span>';
               }
             }
