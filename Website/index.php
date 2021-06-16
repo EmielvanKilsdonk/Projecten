@@ -34,13 +34,12 @@
             echo '<li class="nav-item"><a class="nav-link" href="Projecten/index.php">Bekijk projecten</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
-            if (mysqli_num_rows($resultaat) > 0)
-            {
-              while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC))
-              {
-                echo '<span class="navbar-text">Welkom, ' . $row['lidnaam']  . '!</span>';
-              }
-            }
+            //Lidnaam ophalen
+            $stmt = $connection->prepare("SELECT * FROM lid WHERE lidid = ?");
+            $stmt->bind_param("s", $userid);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            echo "<span class='navbar-text'>Welkom, " . $result->fetch_object()->lidnaam . "!</span>";
           }
           else {
             echo '<li class="nav-item"><a class="nav-link disabled" href="#">Bekijk projecten</a></li>';
