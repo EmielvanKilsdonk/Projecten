@@ -31,7 +31,7 @@
           }
 
           if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
-            echo '<li class="nav-item active"><a class="nav-link" href="#">Bekijk projecten <span class="sr-only">(current)</span></a></li>';
+            echo '<li class="nav-item active"><a class="nav-link" href="../Projecten/index.php">Bekijk projecten <span class="sr-only">(current)</span></a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="../uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
             if (mysqli_num_rows($resultaat) > 0)
@@ -51,43 +51,69 @@
   </nav>
         
   <main>
-  <table class="table">
+  <div class="jumbotron">
+    <?php 
+    $query = "SELECT * FROM `project` WHERE `projectid` = ". $_GET["project"] .";";
+    $resultaat = mysqli_query($connection, $query);
+    if (mysqli_num_rows($resultaat) > 0) {
+      while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
+        echo '<h1 class="display-4">' . $row['projectnaam'] . '</h1>';
+        echo '<p class="lead">' . $row['projectomschrijving'] . '</p>';
+        echo '<hr class="my-4">';
+        echo '<p class="lead">';
+        echo '<form method="post" enctype="multipart/form-data">';
+        echo '<input type="File" name="file">';
+        echo '<input type="submit" class="btn btn-primary" name="submit" value="Upload Bestand">';
+        echo '</form>';
+        echo '</p>';
+        echo '</tr>';
+      }
+    }  
+    else {
+      echo 'Project konden niet laden. Probeer opnieuw.';
+    }
+    if (isset($_POST["submit"])) {
+        $pname = rand(1000,10000)."-".$_FILES["file"]["name"];
+        $tname = $_FILES["file"]["tmp_name"];
+        $uploads_dir = '../Bestanden';
+        move_uploaded_file($tname, $uploads_dir.'/'.$pname);
+ 
+    $sql = "INSERT into bestand(bestandurl, projectid) VALUES('$pname', ". $_GET["project"] .")";
+ 
+    if(mysqli_query($connection,$sql)){
+    }
+    else{
+        echo "Error";
+    }
+    }
+    ?>   
+    </div>
+    <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Projectnaam</th>
-      <th scope="col">Omschrijving</th>
+      <th scope="col">Bestand</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <?php
-    if ($_SESSION['docent'] == 1) {
-      $query = "SELECT * FROM `project`;";
-    }
-    else {    
-      $query = "SELECT * FROM `project` INNER JOIN `projectlid` on project.projectid = projectlid.projectid where `lidid` = '$userid';";
-    }
+    <?php   
+    $query = "SELECT * FROM `bestand` where `projectid` = ". $_GET["project"] .";";
     $resultaat = mysqli_query($connection, $query);
-    $i = 1;
     if (mysqli_num_rows($resultaat) > 0) {
       while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
         echo '<tr>';
-        echo '<th scope="row">' . $i . '</th>';
-        echo '<td>' . $row['projectnaam'] . '</td>';
-        echo '<td>' . $row['projectomschrijving'] . '</td>';
-        echo '<td><a href="../Projecten/project.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-dark">Openen</button></td>';
+        echo '<td>' . $row['bestandurl'] . '</td>';
+        echo '<td><a href="../Bestanden/' . $row['bestandurl'] . '"><button type="button" class="btn btn-dark">Download</button></td>';
         echo '</tr>';
-        $i++;
       }
     }  
     else {
-      echo 'Projecten konden niet laden. Probeer opnieuw.';
+      echo 'Kon bestanden niet laden. Probeer opnieuw.';
     }
     ?>   
     
   </tbody>
-  </table>
+</table>
   </main>    
     
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

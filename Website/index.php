@@ -23,13 +23,15 @@
         </li>
         <?php
           session_start();
+          if (isset($_SESSION['user'])) {
           $userid = $_SESSION['user'];
           $connection = mysqli_connect("localhost", "root", "", "summaprojecten");
           $query = "SELECT * FROM lid where `lidid` = '$userid';";
           $resultaat = mysqli_query($connection, $query);
+          }
+
           if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
-            echo '<li class="nav-item"><a class="nav-link" href="#">Inzien project</a></li>';
-            echo '<li class="nav-item"><a class="nav-link" href="#">Indienen</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="Projecten/index.php">Bekijk projecten</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
             if (mysqli_num_rows($resultaat) > 0)
@@ -41,8 +43,7 @@
             }
           }
           else {
-            echo '<li class="nav-item"><a class="nav-link disabled" href="#">Inzien project</a></li>';
-            echo '<li class="nav-item"><a class="nav-link disabled" href="#">Indienen</a></li>';
+            echo '<li class="nav-item"><a class="nav-link disabled" href="#">Bekijk projecten</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
             echo '</ul>';
             echo '<span class="navbar-text">Website voor het Summa College</span>';

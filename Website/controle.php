@@ -21,6 +21,7 @@
           session_start();
           $_SESSION['login'] = true;
           $_SESSION['user'] = $row['lidid'];
+          $_SESSION['docent'] = $row['liddocent'];
 
           header("location: index.php");
           exit;
