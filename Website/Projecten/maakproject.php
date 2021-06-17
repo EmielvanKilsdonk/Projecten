@@ -14,10 +14,10 @@
         <h1 class="h3 mb-3 font-weight-normal">Project aanmaken</h1>
 
         <label for="inputProjectname" class="sr-only">Projectnaam</label>
-        <input type="text" id="inputProjectname" name="inputProjectname" class="form-control" placeholder="Projectnaam" required />
+        <input type="text" id="inputProjectname" name="inputProjectname" class="form-control" placeholder="Projectnaam" required pattern="[a-zA-Z0-9!_]{0,25}" title="Geen speciale tekens"/>
 
         <label for="inputDesc" class="sr-only">Omschrijving</label>
-        <input type="text" id="inputDesc" name="inputDesc" class="form-control" placeholder="Omschrijving" required />
+        <input type="text" id="inputDesc" name="inputDesc" class="form-control" placeholder="Omschrijving" required pattern="[a-zA-Z0-9!_ ]{0,50}" title="Geen speciale tekens"/>
 
         <div class="form-check">
         <?php 
