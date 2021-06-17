@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 10, 2021 at 09:26 AM
+-- Generation Time: Jun 17, 2021 at 07:53 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -32,21 +32,10 @@ USE `summaprojecten`;
 DROP TABLE IF EXISTS `bestand`;
 CREATE TABLE IF NOT EXISTS `bestand` (
   `bestandid` int(11) NOT NULL AUTO_INCREMENT,
+  `projectid` int(11) NOT NULL,
   `bestandurl` varchar(50) NOT NULL,
   PRIMARY KEY (`bestandid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bestandproject`
---
-
-DROP TABLE IF EXISTS `bestandproject`;
-CREATE TABLE IF NOT EXISTS `bestandproject` (
-  `projectid` int(11) NOT NULL,
-  `bestandid` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -63,7 +52,15 @@ CREATE TABLE IF NOT EXISTS `lid` (
   `wachtwoord` varchar(25) NOT NULL,
   PRIMARY KEY (`lidid`),
   UNIQUE KEY `gebruikersnaam` (`gebruikersnaam`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lid`
+--
+
+INSERT INTO `lid` (`lidid`, `lidnaam`, `liddocent`, `gebruikersnaam`, `wachtwoord`) VALUES
+(1, 'test', 0, 'test', 'test'),
+(2, 'Volkan Welp', 1, 'volkanwelp', 'test');
 
 -- --------------------------------------------------------
 
@@ -77,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `project` (
   `projectnaam` varchar(25) NOT NULL,
   `projectomschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`projectid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`projectid`, `projectnaam`, `projectomschrijving`) VALUES
+(1, 'Test', 'Lorum ipsum');
 
 -- --------------------------------------------------------
 
@@ -90,6 +94,13 @@ CREATE TABLE IF NOT EXISTS `projectlid` (
   `projectid` int(11) NOT NULL,
   `lidid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `projectlid`
+--
+
+INSERT INTO `projectlid` (`projectid`, `lidid`) VALUES
+(1, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
