@@ -25,7 +25,7 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="1" name="inputDocent" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
-                Ik ben een docent
+                Ik ben een docent/opdrachtgever
             </label>
         </div>
         
