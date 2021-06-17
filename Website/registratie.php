@@ -23,7 +23,7 @@
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Wachtwoord" required />
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" name="inputDocent" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="1" name="inputDocent" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
                 Ik ben een docent
             </label>
