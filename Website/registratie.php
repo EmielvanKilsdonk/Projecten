@@ -14,13 +14,13 @@
         <h1 class="h3 mb-3 font-weight-normal">Registreren</h1>
 
         <label for="inputName" class="sr-only">Naam</label>
-        <input type="text" id="inputName" name="inputName" class="form-control" placeholder="Naam" required />
+        <input type="text" id="inputName" name="inputName" class="form-control" placeholder="Naam" required pattern="[a-zA-Z0-9!_ ]{0,25}" title="Geen speciale tekens"/>
 
         <label for="inputUsername" class="sr-only">Email</label>
-        <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Gebruikersnaam" required />
+        <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Gebruikersnaam" required pattern="[a-zA-Z0-9!_]{0,25}" title="Geen speciale tekens"/>
 
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Wachtwoord" required />
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Wachtwoord" required pattern="[a-zA-Z0-9!_]{0,25}" title="Geen speciale tekens"/>
 
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="1" name="inputDocent" id="flexCheckDefault">
