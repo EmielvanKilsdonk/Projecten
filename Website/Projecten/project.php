@@ -72,7 +72,7 @@
     else {
       echo 'Project konden niet laden. Probeer opnieuw.';
     }
-    if (isset($_POST["submit"])) {
+    if (isset($_POST["submit"]) && $_FILES["file"]["name"] != Null) {
         $pname = rand(1000,10000)."-".$_FILES["file"]["name"];
         $tname = $_FILES["file"]["tmp_name"];
         $uploads_dir = '../Bestanden';
