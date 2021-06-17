@@ -22,7 +22,7 @@
         <div class="form-check">
         <?php 
             $connection = mysqli_connect("localhost", "root", "", "summaprojecten");
-            $query = "SELECT * FROM `lid`;";
+            $query = "SELECT * FROM `lid` WHERE liddocent = 0;";
             $resultaat = mysqli_query($connection, $query);
             if (mysqli_num_rows($resultaat) > 0) {
                 while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
