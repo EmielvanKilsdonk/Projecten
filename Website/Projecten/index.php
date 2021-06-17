@@ -40,6 +40,7 @@
               {
                 if ($_SESSION['docent'] == 1) {
                   echo '<a href="../Projecten/maakproject.php"><button type="button" class="btn btn-primary" style="margin-right:10px;">Maak Project</button></a>';
+                  echo '<a href="../Projecten/gebruiker.php"><button type="button" class="btn btn-danger" style="margin-right:10px;">Verwijder gebruikers</button></a>';
                 }
                 echo '<span class="navbar-text">Welkom, ' . $row['lidnaam']  . '!</span>';
               }
@@ -61,31 +62,51 @@
       <th scope="col">Projectnaam</th>
       <th scope="col">Omschrijving</th>
       <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <?php
     if ($_SESSION['docent'] == 1) {
       $query = "SELECT * FROM `project`;";
+      $resultaat = mysqli_query($connection, $query);
+      $i = 1;
+      if (mysqli_num_rows($resultaat) > 0) {
+        while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
+          echo '<tr>';
+          echo '<th scope="row">' . $i . '</th>';
+          echo '<td>' . $row['projectnaam'] . '</td>';
+          echo '<td>' . $row['projectomschrijving'] . '</td>';
+          echo '<td><a href="../Projecten/project.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-dark">Openen</button></a></td>';
+          echo '<td><a href="../Projecten/machtiging.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-primary">Machtiging</button></a></td>';
+          echo '<td><a href="../Projecten/verwijderproject.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-danger">Verwijder</button></a></td>';
+          echo '</tr>';
+          $i++;
+        }
+      }  
+      else {
+        echo 'Projecten konden niet laden. Probeer opnieuw.';
+      }
     }
     else {    
       $query = "SELECT * FROM `project` INNER JOIN `projectlid` on project.projectid = projectlid.projectid where `lidid` = '$userid';";
-    }
-    $resultaat = mysqli_query($connection, $query);
-    $i = 1;
-    if (mysqli_num_rows($resultaat) > 0) {
-      while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
-        echo '<tr>';
-        echo '<th scope="row">' . $i . '</th>';
-        echo '<td>' . $row['projectnaam'] . '</td>';
-        echo '<td>' . $row['projectomschrijving'] . '</td>';
-        echo '<td><a href="../Projecten/project.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-dark">Openen</button></td>';
-        echo '</tr>';
-        $i++;
+      $resultaat = mysqli_query($connection, $query);
+      $i = 1;
+      if (mysqli_num_rows($resultaat) > 0) {
+        while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
+          echo '<tr>';
+          echo '<th scope="row">' . $i . '</th>';
+          echo '<td>' . $row['projectnaam'] . '</td>';
+          echo '<td>' . $row['projectomschrijving'] . '</td>';
+          echo '<td><a href="../Projecten/project.php?project=' . $row['projectid'] . '"><button type="button" class="btn btn-dark">Openen</button></a></td>';
+          echo '</tr>';
+          $i++;
+        }
+      }  
+      else {
+        echo 'Projecten konden niet laden. Probeer opnieuw.';
       }
-    }  
-    else {
-      echo 'Projecten konden niet laden. Probeer opnieuw.';
     }
     ?>   
     

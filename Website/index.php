@@ -34,7 +34,6 @@
             echo '<li class="nav-item"><a class="nav-link" href="Projecten/index.php">Bekijk projecten</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
-            //Lidnaam ophalen
             $stmt = $connection->prepare("SELECT * FROM lid WHERE lidid = ?");
             $stmt->bind_param("s", $userid);
             $stmt->execute();

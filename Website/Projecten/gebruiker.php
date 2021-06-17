@@ -9,15 +9,9 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin" action="projectcontrole.php" method="post">
+    <form class="form-signin" action="verwijdergebruiker.php" method="post">
         <img class="mb-4" src="../img/logo.png" alt="SUMMA COLLEGE" height="72" />
-        <h1 class="h3 mb-3 font-weight-normal">Project aanmaken</h1>
-
-        <label for="inputProjectname" class="sr-only">Projectnaam</label>
-        <input type="text" id="inputProjectname" name="inputProjectname" class="form-control" placeholder="Projectnaam" required />
-
-        <label for="inputDesc" class="sr-only">Omschrijving</label>
-        <input type="text" id="inputDesc" name="inputDesc" class="form-control" placeholder="Omschrijving" required />
+        <h1 class="h3 mb-3 font-weight-normal">Gebruikers verwijderen</h1>
 
         <div class="form-check">
         <?php 
@@ -35,8 +29,8 @@
             }?>
         </div><br>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Maak nieuw project
+        <button class="btn btn-lg btn-danger btn-block" type="submit">
+            Verwijder
         </button>
     </form>
 </body>

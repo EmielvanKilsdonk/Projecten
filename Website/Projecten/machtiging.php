@@ -9,15 +9,9 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin" action="projectcontrole.php" method="post">
+    <form class="form-signin" action="machtigingcontrole.php?project=<?php echo $_GET["project"] ?>" method="post">
         <img class="mb-4" src="../img/logo.png" alt="SUMMA COLLEGE" height="72" />
-        <h1 class="h3 mb-3 font-weight-normal">Project aanmaken</h1>
-
-        <label for="inputProjectname" class="sr-only">Projectnaam</label>
-        <input type="text" id="inputProjectname" name="inputProjectname" class="form-control" placeholder="Projectnaam" required />
-
-        <label for="inputDesc" class="sr-only">Omschrijving</label>
-        <input type="text" id="inputDesc" name="inputDesc" class="form-control" placeholder="Omschrijving" required />
+        <h1 class="h3 mb-3 font-weight-normal">Gebruikers toevoegen aan project</h1>
 
         <div class="form-check">
         <?php 
@@ -26,7 +20,13 @@
             $resultaat = mysqli_query($connection, $query);
             if (mysqli_num_rows($resultaat) > 0) {
                 while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
-                    echo '<input class="form-check-input" type="checkbox" value="' . $row['lidid'] . '" name="Students[]" id="' . $row['lidid'] . '">';
+                    echo '<input class="form-check-input" type="checkbox" value="' . $row['lidid'] . '" name="Students[]" id="' . $row['lidid'] . '"';
+                    $query2 = "SELECT * FROM `lid` INNER JOIN `projectlid` ON lid.lidid = projectlid.lidid WHERE projectid = ". $_GET["project"] ." AND lid.lidid = " . $row['lidid'] . ";";
+                    $resultaat2 = mysqli_query($connection, $query2);
+                    if (mysqli_num_rows($resultaat2) > 0) {
+                        echo 'checked';
+                    }
+                    echo '>';
                     echo '<label class="form-check-label" for="' . $row['lidid'] . '">' . $row['lidnaam'] . '</label><br>';
                 }
             }  
@@ -35,8 +35,8 @@
             }?>
         </div><br>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-            Maak nieuw project
+        <button class="btn btn-lg btn-danger btn-block" type="submit">
+            Machtig
         </button>
     </form>
 </body>
