@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="img/logo.png" height="30" class="d-inline-block align-top" alt="">
     </a>
@@ -17,8 +17,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
         </li>
         <?php
           session_start();
@@ -31,7 +31,7 @@
 
           if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
             echo '<li class="nav-item"><a class="nav-link" href="Projecten/index.php">Bekijk projecten</a></li>';
-            echo '<li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>';
+            echo '<li class="nav-item active"><a class="nav-link" href="contact.php">Contact<span class="sr-only">(current)</span></a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
             $stmt = $connection->prepare("SELECT * FROM lid WHERE lidid = ?");
@@ -42,7 +42,7 @@
           }
           else {
             echo '<li class="nav-item"><a class="nav-link disabled" href="#">Bekijk projecten</a></li>';
-            echo '<li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>';
+            echo '<li class="nav-item active"><a class="nav-link" href="contact.php">Contact</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>';
             echo '</ul>';
             echo '<span class="navbar-text">Website voor het Summa College</span>';
@@ -55,24 +55,21 @@
 
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-3">Welkom</h1>
+        <h1 class="display-3">Contact</h1>
         <p>
-          Welkom op onze nieuwe website. We hebben deze website besloten te maken, omdat op de oude site geen goed systeem was voor de projecten. <br>
-          Op deze site zijn dus wat functies die handig zullen zijn. Zoals dat je nu je projecten in groepen kan maken. <br>
-          Dus maak meteen je account aan en begin!
+            Mocht er iets niet werken op de website, of heeft u eventuale vragen over de website. <br>
+            Neem dan gerust contact met ons op. U kunt ons bellen en mailen.
         </p>
         <p>
-          Het is dus mogelijk om je projecten voor het Summa College op te leveren via deze website. 
-          Deze kunnen dan door u of de opdrachtgever/docent bekeken worden en beoordeerd.
+            <b>Beschikbaarheid:</b> <br>
+            Werkdagen: 8:00 - 18:00 <br>
+            Weekend: 12:00 - 18:00
         </p>
-        <?php
-          if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
-            echo '<p><a class="btn btn-primary btn-lg" href="Projecten/index.php" role="button">Zie Projecten »</a></p>';
-          }
-          else {
-            echo '<p><a class="btn btn-primary btn-lg" href="login.php" role="button">Login »</a></p>';
-          }
-        ?>
+        <p>
+            <b>Contact mogelijkheden:</b> <br>
+            Telefoon: 0495654283 <br>
+            E-mail: info@summacollege.nl
+        </p>
       </div>
     </div>
   </main>

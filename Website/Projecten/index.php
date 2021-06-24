@@ -32,6 +32,7 @@
 
           if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
             echo '<li class="nav-item active"><a class="nav-link" href="#">Bekijk projecten <span class="sr-only">(current)</span></a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="../contact.php">Contact</a></li>';
             echo '<li class="nav-item"><a class="nav-link" href="../uitloggen.php">Uitloggen</a></li>';
             echo '</ul>';
             if (mysqli_num_rows($resultaat) > 0)
