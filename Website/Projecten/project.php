@@ -104,7 +104,7 @@
       while($row = mysqli_fetch_array($resultaat, MYSQLI_ASSOC)) {
         echo '<tr>';
         echo '<td>' . $row['bestandurl'] . '</td>';
-        echo '<td><a href="../Bestanden/' . $row['bestandurl'] . '" target="_blank"><button type="button" class="btn btn-dark">Download</button></a></td>';
+        echo '<td><a href="../Bestanden/' . $row['bestandurl'] . '" target="_blank"><button type="button" class="btn btn-dark" download>Download</button></a></td>';
         echo '<td><a href="verwijderfile.php?bestand=' . $row['bestandurl'] . '&project='. $_GET["project"] .'"><button type="button" class="btn btn-danger">Verwijder</button></a></td>';
         echo '</tr>';
       }
