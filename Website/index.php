@@ -21,6 +21,10 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <?php
+
+          if ($_GET["inlog"] == "mislukt") {
+              echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
+          }
           session_start();
           if (isset($_SESSION['user'])) {
           $userid = $_SESSION['user'];

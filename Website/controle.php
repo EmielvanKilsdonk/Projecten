@@ -69,7 +69,7 @@
     else
     {
       echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
-      header("location: index.php");
+      header("location: index.php?inlog=mislukt");
       exit;
     }
 
