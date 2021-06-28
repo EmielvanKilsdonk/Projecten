@@ -25,6 +25,11 @@
           if (isset($_GET["inlog"]) && $_GET["inlog"] == "mislukt") {
               echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
           }
+
+          if (isset($_GET["uitlog"]) && $_GET["uitlog"] == "gelukt") {
+            echo '<script>alert("U bent uitgelogd, u keert nu terug naar de hoofdpagina.")</script>';
+          }
+          
           session_start();
           if (isset($_SESSION['user'])) {
           $userid = $_SESSION['user'];
