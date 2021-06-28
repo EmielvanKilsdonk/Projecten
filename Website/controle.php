@@ -33,7 +33,8 @@
         }
       }
       else {
-        header("location: index.php");
+        echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
+        header("location: index.php?inlog=mislukt");
         exit;
       }
     }
