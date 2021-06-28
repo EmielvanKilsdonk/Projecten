@@ -22,7 +22,7 @@
         </li>
         <?php
 
-          if ($_GET["inlog"] == "mislukt") {
+          if (isset($_GET["inlog"]) && $_GET["inlog"] == "mislukt") {
               echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
           }
           session_start();
