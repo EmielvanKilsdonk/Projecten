@@ -68,6 +68,7 @@
     }
     else
     {
+      echo '<script>alert("Verkeerde wachtwoord of gebruikersnaam!")</script>';
       header("location: index.php");
       exit;
     }
